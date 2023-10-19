@@ -1,0 +1,32 @@
+<ul id="taskList">
+    <li>Задача1 <button class="delete-button">удалить</button><button class="clone-button">клонировать</button></li>
+    <li>Задача2 <button class="delete-button">удалить</button><button class="clone-button">клонировать</button></li>
+    <li>Задача3 <button class="delete-button">удалить</button><button class="clone-button">клонировать</button></li>
+</ul>
+<button class="clear">вернуть все как было</button>
+<script>
+    const taskList = document.getElementById('taskLit');
+    const clearEl = document.querySelector('.clear');
+
+    taskList.addEventListener('click', event => {
+        if (event.target.classList.contains('delete-button')) {
+            const taskItem = event.target.closest('li');
+            taskItem.remove();//удаление задачи
+            //сохранение списка задач в локальном хранилище
+            localStorage.setItem('taskList', taskList.innerHTML);
+        }
+        if (event.target.classList.contains('clone-button')) {
+            const taskItem = event.target.closest('li');
+            const clonedTaskItem = taskItem.cloneNode(true);//клонирование задачи
+            taskItem.after(clonedTaskItem);//вставка клонированной задчи после текущей задачи
+            localStorage.setItem('taskList', taskList.innerHTML);
+        }
+    });
+    //восстановление списка задач из локалльного хранилища при загрузке страницы
+    if (localStorage.getItem('taskList')) {
+        taskList.innerHTML = localStorage.getItem('taskList');
+    }
+    clearEl.addEventListener('click', function (e) {
+        localStorage.clear();
+    });
+</script>
