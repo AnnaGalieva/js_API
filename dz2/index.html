@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="slider-container">
+        <div class="images">
+            <img src="images/beautiful-tropical-beach-sea-ocean-with-white-cloud-blue-sky-and-copyspace_74190-8663.jpg">
+            <img src="images/empty-sea-and-beach-background_74190-313.jpg">
+            <img src="images/gili-trawangan-beach_1385-1712.jpg">
+            <img src="images/top-view-of-sand-meeting-seawater_158595-6255.jpg">
+            <img src="images/tropical-beach_74190-188.jpg">
+        </div>
+        <div class="btm-slides">
+            <span onclick="btm_slide(1)"></span>
+            <span onclick="btm_slide(2)"></span>
+            <span onclick="btm_slide(3)"></span>
+            <span onclick="btm_slide(4)"></span>
+            <span onclick="btm_slide(5)"></span>
+        </div>
+        <div class="pokazatel-snimka left" onclick="side_slide(-1)">
+            <span class="fas fa-angle-left"></span>
+        </div>
+        <div class="pokazatel-snimka right" onclick="side_slide(1)">
+            <span class="fas fa-angle-right"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

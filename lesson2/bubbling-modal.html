@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="open-modal-btn">открыть модальное окно</button>
+    <div id="modal">
+        <h2>модальное окно</h2>
+        <p>нажмите вне окна, чтобы закрыть его</p>
+    </div>
+    <script>
+        const modal = document.getElementById('.modal');
+        const openModalBtn = document.querySelector('.open-modal-btn');
+
+        openModalBtn.addEventListener('click', function () {
+            modal.style.display = 'block';
+        });
+        document.addEventListener('mosedown', function (event) {
+            if (!modal.contains(event.target) && event.target !== openModalBtn) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>

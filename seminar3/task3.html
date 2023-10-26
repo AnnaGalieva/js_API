@@ -1,0 +1,135 @@
+<!-- Создайте контейнер в HTML с идентификатором "photo-container".
+Запросите фотографии с Unsplash, используя их API. Задайте количество фотографий и номер страницы.
+Отобразите полученные фотографии в созданном контейнере.
+При прокрутке страницы до конца, автоматически загружайте и отображайте следующую партию фотографий.
+Увеличивайте номер страницы после каждой загрузки.
+При ошибке загрузки, выводите сообщение в консоли.
+При первом открытии страницы, отображайте первую партию фотографий. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #photo-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .photo {
+            flex: 1 1 calc(33.33% - 20px);
+            margin: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .photo img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="photo-container"></div>
+    <script>
+        const elem = document.querySelector('#photo-container');
+        while (confirm("Continue?")) {
+            name = prompt("Name: ");
+            console.log(name);
+
+            let socket = new WebSocket("wss://javascript.info/article/websocket/demo/hello");
+            socket.onopen = function (e) {
+                alert("[open] Соединение установлено");
+                // alert("Отправляем данные на сервер");
+
+                socket.close;
+                socket.send(`Меня зовут ${name}`);
+                // socket.send(("Введите имя: "));
+                // socket.send(("Введите имя: "));
+
+
+                // setTimeout(() => {
+                // socket.send("Меня зовут Jack");
+                // }, 2000);
+            };
+
+            socket.onmessage = function (event) {
+                console.log("hi from message")
+                // setInterval(() => {
+                elem.textContent = event.data;
+
+                // }, 500);
+
+                // console.log(event.data);
+                // alert(`[message] Данные получены с сервера: ${event.data}`);
+            };
+
+            // setTimeout(() => {
+
+            // }, 20000);
+            socket.onclose = function (event) {
+                if (event.wasClean) {
+                    alert(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
+                } else {
+                    // например, сервер убил процесс или сеть недоступна
+                    // обычно в этом случае event.code 1006
+                    alert('[close] Соединение прервано');
+                }
+
+            };
+
+
+            socket.onerror = function (error) {
+                alert(`[error]`);
+            };
+            // const webSocket = new WebSocket('ws://127.0.0.0');
+            // webSocket.OPEN;
+            // webSocket.addEventListener()
+            // ловим на document...
+            // document.addEventListener("hello", function(event) { // (1)
+            // alert("Привет от " + event.target.tagName); // Привет от H1
+            // });
+
+            // // ...запуск события на элементе!
+            // let event = new Event("hello", {bubbles: true}); // (2)
+            // elem.dispatchEvent(event);
+
+            // обработчик на document сработает и выведет сообщение.
+        };
+
+
+        // window.addEventListener("scroll", function () {
+        //     let contentHeight = photo.offsetHeight;
+        //     let yOffset = window.pageYOffset;
+        //     let window_height = window.innerHeight;
+        //     let y = yOffset + window_height;
+        //     if (y >= contentHeight) {
+        //         photo.innerHTML = photo.innerHTML + fetchFoto();
+        //     }
+        // });
+
+
+
+
+
+//         Алексей Кадочников if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+//             функция();
+//         }
+// Алексей Кадочников const photoElement = document.createElement('div');
+//         photoElement.classList.add('photo');
+//         const img = document.createElement('img');
+//         img.src = photo.urls.small;
+//         img.alt = photo.alt_description;
+//         photoElement.appendChild(img);
+//         photoContainer.appendChild(photoElement);
+// Алексей Кадочников https://api.unsplash.com/photos?page=${page}&per_page=
+// Алексей Кадочников https://codepen.io/alexej-kadochnikow/pen/dywWjvO?editors=1000
+// БорисМуратович Джериев 'https://api.unsplash.com/photos/random?client_id=zVtklGAbRBpxLdpSZXzGvX0OWB4cAn9wYa0Hqjhc2fA';
+    </script>
+</body>
+
+</html>

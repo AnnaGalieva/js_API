@@ -1,0 +1,83 @@
+<!-- // Создайте простое модальное окно, которое появляется при клике на кнопку "Открыть модальное окно" и закрывается при клике на кнопку "Закрыть". Модальное окно должно содержать заголовок "Модальное окно" и кнопку для закрытия. Модальное окно должно плавно появляться и исчезать при открытии и закрытии. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        /*
+.block {
+display: none;
+}
+
+.b-show {
+display: block;
+animation: showBlock 1s linear forwards;
+}
+
+@keyframes showBlock {
+0% {
+opacity: 0;
+}
+100% {
+opacity: 1;
+}
+} */
+        #modal {
+            width: 0;
+            height: 0;
+            /* display: none; */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* width: 300px; */
+            /* padding: 20px; */
+            background-color: #f0f0f0;
+            text-align: center;
+            transition: all 1s ease;
+            overflow: hidden;
+        }
+
+        .open-modal-btn {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .close {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="open-modal-btn">Открыть модальное окно</button>
+    <div id="modal">
+        <h2>Модальное окно</h2>
+        <button class="close">Закрыть</button>
+    </div>
+    <script>
+        const closeBtn = document.querySelector('.close');
+        const modal = document.getElementById('modal');
+        const openModalBtn = document.querySelector('.open-modal-btn');
+        openModalBtn.addEventListener('click', function () {
+            // modal.style.display = 'block';
+            modal.style.width = '500px';
+            modal.style.height = '500px';
+        });
+        closeBtn.addEventListener('click', function (event) {
+            modal.style.width = '0';
+            modal.style.height = '0';
+
+            // modal.style.display = 'none';
+
+        });
+    </script>
+</body>
+
+</html>

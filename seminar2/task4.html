@@ -1,0 +1,132 @@
+<!-- Вам предоставляется задача создать простой онлайн опросник, который позволяет пользователям отвечать на вопросы с вариантами ответов. Ваша задача - разработать интерфейс и функциональность для этого опросника, используя HTML, CSS и JavaScript.
+Создайте интерфейс с несколькими вопросами и вариантами ответов. Каждый вопрос должен иметь несколько вариантов ответов.
+Реализуйте обработку событий, чтобы пользователи могли выбирать варианты ответов.
+Добавьте кнопку "Завершить опрос", которая будет показывать результаты опроса.
+При нажатии на кнопку "Завершить опрос", вы должны проверить, что пользователь ответил на все вопросы, и отобразить выбранные им варианты ответов.
+Если пользователь не ответил на все вопросы, покажите ему сообщение о необходимости ответить на все вопросы перед завершением опроса.
+По желанию можно добавить стилизацию опросника с использованием CSS для лучшего пользовательского опыта. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="question">
+        <p>Вопрос 1: Какой ваш любимый цвет?</p>
+        <div class="options">
+            <label>
+                <input type="radio" name="q1" value="Синий"> Синий
+            </label>
+            <label>
+                <input type="radio" name="q1" value="Зеленый"> Зеленый
+            </label>
+            <label>
+                <input type="radio" name="q1" value="Красный"> Красный
+            </label>
+        </div>
+    </div>
+
+    <div class="question">
+        <p>Вопрос 2: Какое ваше любимое животное?</p>
+        <div class="options">
+            <label>
+                <input type="radio" name="q2" value="Собака"> Собака
+            </label>
+            <label>
+                <input type="radio" name="q2" value="Кот"> Кот
+            </label>
+            <label>
+                <input type="radio" name="q2" value="Попугай"> Попугай
+            </label>
+        </div>
+    </div>
+
+    <button id="submit">Завершить опрос</button>
+
+    <div class="result" style="display: none;">
+        <p>Результаты:</p>
+        <p id="result-q1">Вопрос 1: <span></span></p>
+        <p id="result-q2">Вопрос 2: <span></span></p>
+    </div>
+    <script>
+
+        const endSurvey = document.getElementById('submit');
+
+        endSurvey.addEventListener('click', function () {
+            const firstAnswer = getFirstAnswer();
+            const secondAnswer = getSecondAnswer();
+            renderResult(firstAnswer, secondAnswer);
+        });
+
+
+
+        function getFirstAnswer() {
+            const answer1 = document.querySelector('input[name="q1"]:checked');
+            try {
+                if (answer1) {
+                    return answer1.value;
+                } else {
+                    // throw new Error('Вы не выбрали вариант ответа!');
+                    alert('Вы не выбрали вариант ответа на первый вопрос!');
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        function getSecondAnswer() {
+            const answer2 = document.querySelector('input[name="q2"]:checked');
+            try {
+                if (answer2) {
+                    return answer2.value;
+                } else {
+                    // throw new Error('Вы не выбрали вариант ответа!');
+                    alert('Вы не выбрали вариант ответа на второй вопрос!');
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        function renderResult(firstAnswer, secondAnswer) {
+            if (firstAnswer && secondAnswer) {
+                const firstSpan = document.getElementById('result-q1');
+                firstSpan.textContent = firstAnswer;
+                const secondSpan = document.getElementById('result-q2');
+                secondSpan.textContent = secondAnswer;
+                const resultDiv = document.querySelector('.result');
+                resultDiv.style.display = 'block';
+            }
+        }3
+       /// const endSurvey = document.getElementById('submit');
+        // endSurvey.addEventListener('click', function () {
+        //     const answers = getAnswers(["q1", "q2"]);
+        //     renderResult(...answers);
+        // });
+
+        // function getAnswers(questionNames) {
+        //     return questionNames.map((qName) => {
+        //         const answer = document.querySelector(`input[name="${qName}"]:checked`);
+        //         if (!answer) {
+        //             alert(`Вы не выбрали вариант ответа на вопрос с именем ${qName}!`);
+        //         }
+        //         return answer ? answer.value : null;
+        //     });
+        // }
+
+        // function renderResult(firstAnswer, secondAnswer) {
+        //     if (firstAnswer && secondAnswer) {
+        //         document.getElementById('result-q1').textContent = firstAnswer;
+        //         document.getElementById('result-q2').textContent = secondAnswer;
+        //         document.querySelector('.result').style.display = 'block';
+        //     }
+        // }
+    </script>
+</body>
+
+</html>

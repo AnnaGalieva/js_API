@@ -1,0 +1,50 @@
+<!-- // Вам необходимо создать навигационное меню для веб-сайта, в котором меняется активный пункт при клике без фактического перехода на другие страницы. Меню должно обладать следующими характеристиками:
+// Подсветка активного пункта: При клике на пункт меню он должен становиться активным, и для активного пункта должен применяться определенный стиль (например, изменение цвета фона). Если выбрать другой пункт, предыдущий должен перестать быть активным.
+// Эффекты наведения: При наведении курсора на пункты меню должны применяться эффекты (например, изменение цвета текста или фона) для подсказки пользователю, что пункт меню является интерактивным. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            background-color: violet;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li class="menu-li"><a class="active" href="#">Главная</a></li>
+            <li class="menu-li"><a href="#">о нас</a></li>
+            <li class="menu-li"><a href="#">услуги</a></li>
+            <li class="menu-li"><a href="#">контакты</a></li>
+        </ul>
+    </nav>
+    <script>
+        const menuItems = document.querySelectorAll('.menu-li a');
+
+        menuItems.forEach(item => {
+            item.addEventListener('mouseover', function (e) {
+                item.style.color = "red";
+            });
+
+            item.addEventListener('click', function (e) {
+                e.preventDefault();
+                menuItems.forEach(element => {
+                    element.classList.remove('active');
+                });
+                item.classList.add('active');
+            });
+
+            document.addEventListener('mouseout', function (event) {
+                item.style.color = "black";
+            });
+        });
+    </script>
+</body>
+
+</html>
